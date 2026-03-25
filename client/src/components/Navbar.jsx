@@ -93,8 +93,9 @@ const Navbar = ({ cartCount, wishlistSize, onScrollToFeatured, onScrollToHow }) 
           }}>
             <button onClick={() => setShowSearch(s => !s)} style={{
               background: "none", border: "none", cursor: "pointer",
-              color: "#FF6B35", display: "flex", alignItems: "center",
+              color: "#FF6B35", display: "flex", alignItems: "center", justifyContent: "center",
               padding: "0", flexShrink: 0,
+              width: "40px", height: "100%",
             }}>
               <SearchIcon />
             </button>

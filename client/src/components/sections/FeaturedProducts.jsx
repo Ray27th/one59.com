@@ -83,7 +83,7 @@ const FeaturedProducts = forwardRef(({ wishlist, onToggleWishlist, onAddToCart, 
               }}
             >
               <div className="product-img-wrap" style={{
-                background: "#F5F5F5", height: "200px",
+                background: "#FFFFFF", height: "200px",
                 display: "flex", alignItems: "center", justifyContent: "center",
                 position: "relative", overflow: "hidden",
                 borderBottom: "2px solid #1A1A1A",

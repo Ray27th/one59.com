@@ -118,6 +118,7 @@ export default function One59() {
           bundle={detailBundle}
           onClose={() => setDetailBundle(null)}
           onAddToCart={addToCart}
+          onOpenDetail={(item) => { setDetailBundle(null); setDetailProduct(item); }}
         />
       )}
       {detailProduct && (
@@ -125,6 +126,7 @@ export default function One59() {
           product={detailProduct}
           onClose={() => setDetailProduct(null)}
           onAddToCart={addToCart}
+          onOpenDetail={(p) => setDetailProduct(p)}
         />
       )}
 
