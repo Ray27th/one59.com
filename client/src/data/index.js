@@ -15,13 +15,13 @@ export const products = [
   },
   {
     id: 3, name: "Laptop Desk Table", category: "Tables", price: "S$49",
-    desc: "Compact laptop desk with adjustable legs. Works as bedside table.",
+    desc: "Compact laptop desk frame. Works well on top of your table.",
     color: "#A89278", shape: "table", tags: ["Adjustable", "Compact"],
     bg: "linear-gradient(145deg, #F0EBE2 0%, #E0D0BC 100%)",
     image: "/images/laptop-desk.webp", badge: "New",
   },
   {
-    id: 4, name: "Wall Shelf 60cm", category: "Storage", price: "S$35",
+    id: 4, name: "Wall Shelf", category: "Storage", price: "S$35",
     desc: "Simple wall-mounted shelf. Pine wood finish.",
     color: "#BFA75D", shape: "shelf", tags: ["Wall-Mount", "Pine"],
     bg: "linear-gradient(145deg, #EDE8E0 0%, #D8CCBC 100%)",
@@ -70,7 +70,7 @@ export const products = [
     image: "/images/coat-rack.webp", badge: "Best Seller",
   },
   {
-    id: 11, name: "Mirror 40x50cm", category: "Decor", price: "S$42",
+    id: 11, name: "Mirror", category: "Decor", price: "S$42",
     desc: "Wall mirror with aluminum frame. Modern minimalist.",
     color: "#A8A8A8", shape: "mirror", tags: ["Mirror", "Wall"],
     bg: "linear-gradient(145deg, #F0F0F0 0%, #E0E0E0 100%)",
