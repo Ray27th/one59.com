@@ -63,9 +63,23 @@ export default function ProductPage() {
         />
 
         <div className="detail-layout">
-          <div className="detail-gallery">
+          <AnimateIn className="detail-gallery">
             <div className="detail-gallery__frame surface" style={{ "--detail-accent": accent }}>
               <ProductImage objectFit="contain" product={product} />
+
+              <div className="detail-gallery__overlay badge-row">
+                <span className="badge badge--solid">{product.badge || product.catalogType}</span>
+                <span className="badge">{product.sku}</span>
+                <span className="badge badge--dark">{stockStatusLabels[product.stockStatus]}</span>
+              </div>
+            </div>
+
+            <div className="mini-card detail-gallery__caption">
+              <span className="eyebrow">In the room</span>
+              <p className="body-copy">{product.highlights[0]}</p>
+              <p className="fine-copy">
+                {product.dimensions} · {product.finish}
+              </p>
             </div>
 
             <div className="detail-strip">
@@ -117,9 +131,9 @@ export default function ProductPage() {
                 </div>
               </div>
             </div>
-          </div>
+          </AnimateIn>
 
-          <div className="detail-card detail-card--sticky surface" style={{ "--card-accent": accent }}>
+          <AnimateIn className="detail-card detail-card--sticky surface" delay={80} style={{ "--card-accent": accent }}>
             <div className="badge-row">
               <span className="badge badge--solid">{product.badge || product.catalogType}</span>
               <span className="badge">{product.sku}</span>
@@ -129,6 +143,12 @@ export default function ProductPage() {
             <div className="detail-heading">
               <h1 className="page-title">{product.name}</h1>
               <p className="lede">{product.summary}</p>
+            </div>
+
+            <div className="detail-meta">
+              <span className="badge">{product.category.name}</span>
+              <span className="badge">Mainland Singapore only</span>
+              <span className="badge">Guest checkout only</span>
             </div>
 
             <div className="detail-price-panel">
@@ -187,6 +207,7 @@ export default function ProductPage() {
                     label={quantity === 1 ? "Add to cart" : `Add ${quantity} to cart`}
                     product={product}
                     quantity={quantity}
+                    variant="accent"
                   />
                   <Link className="btn btn--ghost" to="/cart">
                     {quantityInCart ? `View cart (${quantityInCart})` : "View cart"}
@@ -224,7 +245,7 @@ export default function ProductPage() {
                 {product.socialProof.person} · {product.socialProof.rating} rating from {product.socialProof.reviews} review notes
               </p>
             </div>
-          </div>
+          </AnimateIn>
         </div>
 
         {alternatives.length ? (

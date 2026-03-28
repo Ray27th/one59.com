@@ -38,20 +38,36 @@ export default function CartPage() {
       <div className="container">
         <Breadcrumbs items={[{ label: "Home", to: "/" }, { label: "Cart" }]} />
 
-        <div className="cart-heading">
-          <div>
+        <div className="cart-heading surface">
+          <div className="cart-heading__copy">
             <span className="eyebrow">Your cart</span>
             <h1 className="page-title">Review your order before guest checkout.</h1>
             <p className="lede">Adjust quantities directly, remove items cleanly, and keep the shipping and support truths visible before the next step.</p>
+
+            <div className="badge-row">
+              <span className="badge badge--dark">GST included</span>
+              <span className="badge">3 to 5 day delivery</span>
+              <span className="badge">7-day returns</span>
+            </div>
           </div>
 
-          <div className="button-row">
-            <Link className="btn btn--ghost" to="/shop">
-              Continue shopping
-            </Link>
-            <button className="btn btn--ghost" onClick={clearCart} type="button">
-              Clear cart
-            </button>
+          <div className="cart-heading__aside">
+            <div className="mini-card cart-heading__metric">
+              <span className="fine-copy">Items subtotal</span>
+              <span className="price-text">{formatPrice(cart.subtotal)}</span>
+              <span className="body-copy">
+                {cart.count} item{cart.count === 1 ? "" : "s"} across {cart.uniqueCount} product{cart.uniqueCount === 1 ? "" : "s"}
+              </span>
+            </div>
+
+            <div className="button-row">
+              <Link className="btn btn--ghost" to="/shop">
+                Continue shopping
+              </Link>
+              <button className="btn btn--ghost" onClick={clearCart} type="button">
+                Clear cart
+              </button>
+            </div>
           </div>
         </div>
 

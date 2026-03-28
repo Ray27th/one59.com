@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useStore } from "../app/store.js";
 import Breadcrumbs from "../components/Breadcrumbs.jsx";
 import EmptyState from "../components/EmptyState.jsx";
+import ProductImage from "../components/ui/ProductImage.jsx";
 import { formatPrice } from "../theme.js";
 
 const initialForm = {
@@ -68,6 +69,12 @@ export default function CheckoutPage() {
               <span className="eyebrow">Guest checkout</span>
               <h1 className="page-title">Fast details capture, no account required.</h1>
               <p className="lede">Enter the contact and address details needed for delivery so your order information is ready when payment goes live.</p>
+
+              <div className="badge-row checkout-heading__badges">
+                <span className="badge badge--dark">GST included</span>
+                <span className="badge">Mainland Singapore only</span>
+                <span className="badge">No payment captured here yet</span>
+              </div>
             </div>
 
             <div className="checkout-section">
@@ -147,11 +154,21 @@ export default function CheckoutPage() {
             <div className="checkout-summary-list">
               {cart.lineItems.map((item) => (
                 <div className="checkout-summary-item" key={item.itemKey}>
-                  <div>
-                    <p className="body-copy">
-                      {item.product.name} × {item.quantity}
-                    </p>
-                    <p className="fine-copy">{formatPrice(item.unitPrice)} each</p>
+                  <div className="checkout-summary-item__main">
+                    <Link
+                      className="checkout-summary-item__media"
+                      style={{ "--item-accent": `var(--tone-${item.product.tone})` }}
+                      to={`/product/${item.product.slug}`}
+                    >
+                      <ProductImage objectFit="contain" product={item.product} />
+                    </Link>
+
+                    <div className="checkout-summary-item__copy">
+                      <p className="body-copy">
+                        {item.product.name} × {item.quantity}
+                      </p>
+                      <p className="fine-copy">{formatPrice(item.unitPrice)} each</p>
+                    </div>
                   </div>
                   <span>{formatPrice(item.lineTotal)}</span>
                 </div>
