@@ -1,7 +1,8 @@
 import { useState } from "react";
 import ProductImage from "./ui/ProductImage.jsx";
-import { StarFilled, CheckIcon, HeartIcon } from "./icons.jsx";
-import { products } from "../data/index.js";
+import { StarFilled, CheckIcon } from "./icons.jsx";
+import { products, storePolicy } from "../data/index.js";
+import { badgeColor } from "../theme.js";
 
 // ─── Customisation config ─────────────────────────────────────────────────────
 const COLOUR_OPTIONS = {
@@ -52,13 +53,6 @@ const ROOM_PRESETS = [
   { label: "Industrial", prompt: "Industrial loft, exposed brick wall, concrete flooring, Edison bulb pendant lighting" },
 ];
 
-const badgeColor = (badge) => {
-  if (badge === "New") return "#1A1A1A";
-  if (badge === "Sale") return "#FF6B35";
-  if (badge === "Ships Fast") return "#2E6B3E";
-  return "#FF6B35";
-};
-
 // ─── Component ────────────────────────────────────────────────────────────────
 const ProductDetailModal = ({ product, onClose, onAddToCart, onOpenDetail }) => {
   // Customisation state
@@ -90,7 +84,6 @@ const ProductDetailModal = ({ product, onClose, onAddToCart, onOpenDetail }) => 
   const recommendedProducts = products.filter(p => recommendedIds.includes(p.id));
 
   const [recIndex, setRecIndex] = useState(0);
-  const [recVisualizing, setRecVisualizing] = useState(false);
   const [recVizOpen, setRecVizOpen] = useState(false);
   const [recRoomDesc, setRecRoomDesc] = useState("");
   const [recActivePreset, setRecActivePreset] = useState(null);
@@ -360,12 +353,6 @@ const ProductDetailModal = ({ product, onClose, onAddToCart, onOpenDetail }) => 
                 fontSize: "22px", fontWeight: 900,
                 color: "#FF6B35",
               }}>{product.price}</span>
-              {product.originalPrice && (
-                <span style={{
-                  fontSize: "14px", color: "#999999",
-                  textDecoration: "line-through", fontWeight: 400,
-                }}>{product.originalPrice}</span>
-              )}
               <div style={{ display: "flex", gap: "2px", marginLeft: "auto" }}>
                 {[1,2,3,4,5].map(s => <StarFilled key={s} />)}
               </div>
@@ -1034,7 +1021,7 @@ const ProductDetailModal = ({ product, onClose, onAddToCart, onOpenDetail }) => 
 
             {/* Delivery note */}
             <p style={{ fontSize: "11px", color: "#999999", margin: "8px 0 0", textAlign: "center", fontFamily: "Arial, sans-serif" }}>
-              FREE DELIVERY OVER S$500 · 30-DAY RETURNS
+              {storePolicy.modalNote}
             </p>
           </div>
         </div>

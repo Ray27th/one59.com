@@ -34,7 +34,10 @@ const RoomVisualizer = ({ product, onClose }) => {
               reader.readAsDataURL(blob);
             });
           }
-        } catch {}
+        } catch {
+          productImageBase64 = null;
+          productImageMimeType = null;
+        }
       }
       const res = await fetch("/api/generate-image", {
         method: "POST",

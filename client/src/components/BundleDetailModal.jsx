@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { StarFilled, CheckIcon } from "./icons.jsx";
-import { products, bundles } from "../data/index.js";
+import { bundles, storePolicy } from "../data/index.js";
 
 const ROOM_PRESETS = [
   { label: "HDB Classic", prompt: "Bright HDB living room, white walls, parquet flooring, warm ambient lighting" },
@@ -107,7 +107,10 @@ const BundleDetailModal = ({ bundle, onClose, onAddToCart, onOpenDetail }) => {
               reader.readAsDataURL(blob);
             });
           }
-        } catch {}
+        } catch {
+          productImageBase64 = null;
+          productImageMimeType = null;
+        }
       }
       const res = await fetch("/api/generate-image", {
         method: "POST",
@@ -207,13 +210,6 @@ const BundleDetailModal = ({ bundle, onClose, onAddToCart, onOpenDetail }) => {
               <span style={{ fontSize: "10px", letterSpacing: "0.15em", color: "#FF6B35", textTransform: "uppercase", fontWeight: 800 }}>
                 Curated Set
               </span>
-              {bundle.originalPrice && (
-                <span style={{
-                  background: "#FF6B35", color: "#FFFFFF",
-                  borderRadius: "4px", padding: "2px 8px",
-                  fontSize: "9px", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 800,
-                }}>SAVE</span>
-              )}
             </div>
             <button onClick={onClose} style={{
               background: "#F5F5F5", border: "2px solid #1A1A1A", cursor: "pointer",
@@ -242,12 +238,6 @@ const BundleDetailModal = ({ bundle, onClose, onAddToCart, onOpenDetail }) => {
                 fontFamily: "'Arial Black', Arial, sans-serif",
                 fontSize: "22px", fontWeight: 900, color: "#FF6B35",
               }}>{bundle.price}</span>
-              {bundle.originalPrice && (
-                <span style={{
-                  fontSize: "14px", color: "#999999",
-                  textDecoration: "line-through", fontWeight: 400,
-                }}>{bundle.originalPrice}</span>
-              )}
               <div style={{ display: "flex", gap: "2px", marginLeft: "auto" }}>
                 {[1,2,3,4,5].map(s => <StarFilled key={s} />)}
               </div>
@@ -762,7 +752,7 @@ const BundleDetailModal = ({ bundle, onClose, onAddToCart, onOpenDetail }) => {
               </button>
             </div>
             <p style={{ fontSize: "11px", color: "#999999", margin: "8px 0 0", textAlign: "center", fontFamily: "Arial, sans-serif" }}>
-              FREE DELIVERY OVER S$500 · 30-DAY RETURNS
+              {storePolicy.modalNote}
             </p>
           </div>
         </div>
