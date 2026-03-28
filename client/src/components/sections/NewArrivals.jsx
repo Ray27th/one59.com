@@ -3,51 +3,47 @@ import { products } from "../../data/index.js";
 import ProductImage from "../ui/ProductImage.jsx";
 import AnimateIn from "../ui/AnimateIn.jsx";
 import { HeartIcon, ArrowRight } from "../icons.jsx";
+import { badgeColor, COL_DARK, COL_LIGHT, COL_ORANGE, COL_WHITE, FONT_HEAD } from "../../theme.js";
 
-const badgeColor = (badge) => {
-  if (badge === "New") return "#1A1A1A";
-  if (badge === "Sale") return "#FF6B35";
-  if (badge === "Ships Fast") return "#2E6B3E";
-  return "#FF6B35";
-};
+const dropProducts = products.filter((product) => product.catalogType === "drop");
 
 const NewArrivals = forwardRef(({ wishlist, onToggleWishlist, onAddToCart, onOpenDetail, onScrollToFeatured }, ref) => (
-  <section ref={ref} style={{ padding: "64px 0 56px", borderTop: "3px solid #1A1A1A" }}>
+  <section ref={ref} style={{ padding: "64px 0 56px", borderTop: `3px solid ${COL_DARK}` }}>
     <AnimateIn>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", padding: "0 48px", marginBottom: "28px" }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "14px" }}>
           <span style={{
-            fontSize: "12px", fontWeight: 800, color: "#FFFFFF", textTransform: "uppercase",
-            letterSpacing: "0.2em", background: "#FF6B35", padding: "6px 12px", borderRadius: "4px",
+            fontSize: "12px", fontWeight: 800, color: COL_WHITE, textTransform: "uppercase",
+            letterSpacing: "0.2em", background: COL_ORANGE, padding: "6px 12px", borderRadius: "4px",
           }}>
             Fresh Drops
           </span>
           <h2 style={{
-            fontFamily: "'Arial Black', Arial, sans-serif",
+            fontFamily: FONT_HEAD,
             fontSize: "32px", fontWeight: 900, margin: 0,
-            letterSpacing: "-1px", color: "#1A1A1A",
+            letterSpacing: "-1px", color: COL_DARK,
             textTransform: "uppercase",
           }}>
             New Arrivals
           </h2>
           <span style={{
-            fontSize: "12px", fontWeight: 700, color: "#1A1A1A",
-            background: "#F5F5F5", padding: "4px 10px", borderRadius: "4px",
+            fontSize: "12px", fontWeight: 700, color: COL_DARK,
+            background: COL_LIGHT, padding: "4px 10px", borderRadius: "4px",
           }}>
-            {products.length} pieces
+            {dropProducts.length} pieces
           </span>
         </div>
         <button onClick={onScrollToFeatured} style={{
-          background: "#1A1A1A", border: "none", cursor: "pointer",
-          color: "#FFFFFF", fontSize: "13px", fontWeight: 800,
+          background: COL_DARK, border: "none", cursor: "pointer",
+          color: COL_WHITE, fontSize: "13px", fontWeight: 800,
           display: "flex", alignItems: "center", gap: "6px",
-          fontFamily: "'Arial Black', Arial, sans-serif",
+          fontFamily: FONT_HEAD,
           padding: "10px 18px", borderRadius: "6px",
           textTransform: "uppercase",
           transition: "all 0.15s",
         }}
           onMouseEnter={e => { e.currentTarget.style.background = "#333333"; }}
-          onMouseLeave={e => { e.currentTarget.style.background = "#1A1A1A"; }}
+          onMouseLeave={e => { e.currentTarget.style.background = COL_DARK; }}
         >View All <ArrowRight /></button>
       </div>
     </AnimateIn>
@@ -60,55 +56,55 @@ const NewArrivals = forwardRef(({ wishlist, onToggleWishlist, onAddToCart, onOpe
         scrollSnapType: "x mandatory",
         scrollbarWidth: "none",
       }}>
-        {products.map((p) => (
+        {dropProducts.map((p) => (
           <div key={p.id} className="product-card" style={{
             flexShrink: 0, width: "260px",
-            background: "#FFFFFF",
+            background: COL_WHITE,
             borderRadius: "8px",
             overflow: "hidden",
-            border: "2px solid #1A1A1A",
+            border: `2px solid ${COL_DARK}`,
             scrollSnapAlign: "start",
             transition: "all 0.2s",
             cursor: "pointer",
-            boxShadow: "3px 3px 0px #1A1A1A",
+            boxShadow: `3px 3px 0px ${COL_DARK}`,
           }}
             onClick={() => onOpenDetail(p)}
             onMouseEnter={e => {
               e.currentTarget.style.transform = "translate(-2px, -2px)";
-              e.currentTarget.style.boxShadow = "5px 5px 0px #FF6B35";
+              e.currentTarget.style.boxShadow = `5px 5px 0px ${COL_ORANGE}`;
             }}
             onMouseLeave={e => {
               e.currentTarget.style.transform = "translate(0, 0)";
-              e.currentTarget.style.boxShadow = "3px 3px 0px #1A1A1A";
+              e.currentTarget.style.boxShadow = `3px 3px 0px ${COL_DARK}`;
             }}
           >
             <div className="product-img-wrap" style={{
-              background: "#FFFFFF", height: "200px",
+              background: COL_WHITE, height: "200px",
               display: "flex", alignItems: "center", justifyContent: "center",
               position: "relative", overflow: "hidden",
-              borderBottom: "2px solid #1A1A1A",
+              borderBottom: `2px solid ${COL_DARK}`,
             }}>
               <ProductImage product={p} />
               {p.badge && (
                 <div style={{
                   position: "absolute", top: "12px", left: "12px",
-                  background: badgeColor(p.badge), color: "#FFFFFF",
+                  background: badgeColor(p.badge), color: COL_WHITE,
                   borderRadius: "4px", padding: "4px 10px",
                   fontSize: "10px", fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase",
                 }}>{p.badge}</div>
               )}
               <button onClick={(e) => onToggleWishlist(p.id, e)} style={{
                 position: "absolute", top: "12px", right: "12px",
-                background: "#FFFFFF",
-                border: "2px solid #1A1A1A",
+                background: COL_WHITE,
+                border: `2px solid ${COL_DARK}`,
                 borderRadius: "50%",
                 width: "32px", height: "32px",
                 display: "flex", alignItems: "center", justifyContent: "center",
                 cursor: "pointer",
                 transition: "all 0.15s",
               }}
-                onMouseEnter={e => { e.currentTarget.style.background = "#FF6B35"; e.currentTarget.style.borderColor = "#FF6B35"; }}
-                onMouseLeave={e => { e.currentTarget.style.background = "#FFFFFF"; e.currentTarget.style.borderColor = "#1A1A1A"; }}
+                onMouseEnter={e => { e.currentTarget.style.background = COL_ORANGE; e.currentTarget.style.borderColor = COL_ORANGE; }}
+                onMouseLeave={e => { e.currentTarget.style.background = COL_WHITE; e.currentTarget.style.borderColor = COL_DARK; }}
               >
                 <HeartIcon filled={wishlist.has(p.id)} />
               </button>
@@ -121,34 +117,28 @@ const NewArrivals = forwardRef(({ wishlist, onToggleWishlist, onAddToCart, onOpe
             </div>
             <div style={{ padding: "14px" }}>
               <div style={{
-                fontFamily: "'Arial Black', Arial, sans-serif",
+                fontFamily: FONT_HEAD,
                 fontSize: "16px", fontWeight: 900,
-                marginBottom: "6px", color: "#1A1A1A",
+                marginBottom: "6px", color: COL_DARK,
                 textTransform: "uppercase",
               }}>{p.name}</div>
               <div style={{ display: "flex", alignItems: "center", gap: "7px", marginBottom: "12px" }}>
                 <span style={{
                   fontSize: "18px", fontWeight: 900,
-                  color: "#FF6B35",
-                  fontFamily: "'Arial Black', Arial, sans-serif",
+                  color: COL_ORANGE,
+                  fontFamily: FONT_HEAD,
                 }}>{p.price}</span>
-                {p.originalPrice && (
-                  <span style={{
-                    fontSize: "13px", color: "#999999",
-                    textDecoration: "line-through", fontWeight: 400
-                  }}>{p.originalPrice}</span>
-                )}
               </div>
               <button onClick={(e) => { e.stopPropagation(); onAddToCart(p); }} style={{
-                width: "100%", background: "#1A1A1A", color: "#FFFFFF",
+                width: "100%", background: COL_DARK, color: COL_WHITE,
                 border: "none", borderRadius: "6px", padding: "11px",
                 fontSize: "13px", fontWeight: 800, cursor: "pointer",
-                fontFamily: "'Arial Black', Arial, sans-serif",
+                fontFamily: FONT_HEAD,
                 textTransform: "uppercase",
                 transition: "background 0.15s",
               }}
                 onMouseEnter={e => e.currentTarget.style.background = "#333333"}
-                onMouseLeave={e => e.currentTarget.style.background = "#1A1A1A"}
+                onMouseLeave={e => e.currentTarget.style.background = COL_DARK}
               >Add to Cart</button>
             </div>
           </div>

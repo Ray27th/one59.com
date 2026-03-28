@@ -75,16 +75,6 @@ const CuratedBundles = ({ onOpenBundleDetail }) => (
                 onMouseEnter={e => e.currentTarget.style.transform = "scale(1.05)"}
                 onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
               />
-              {/* Savings badge */}
-              {bundle.originalPrice && (
-                <div style={{
-                  position: "absolute", top: "12px", left: "12px",
-                  background: "#FF6B35", color: "#FFFFFF",
-                  borderRadius: "4px", padding: "6px 12px",
-                  fontSize: "11px", fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase",
-                  border: "2px solid #1A1A1A",
-                }}>SAVE {Math.round((1 - parseFloat(bundle.price.replace("S$", "")) / parseFloat(bundle.originalPrice.replace("S$", ""))) * 100)}%</div>
-              )}
             </div>
 
             {/* Content */}
@@ -131,12 +121,6 @@ const CuratedBundles = ({ onOpenBundleDetail }) => (
                       fontSize: "28px", fontWeight: 900,
                       color: "#FF6B35", letterSpacing: "-1px",
                     }}>{bundle.price}</span>
-                    {bundle.originalPrice && (
-                      <span style={{
-                        fontSize: "15px", color: "#999999",
-                        textDecoration: "line-through", fontWeight: 400
-                      }}>{bundle.originalPrice}</span>
-                    )}
                   </div>
                 </div>
                 <button
