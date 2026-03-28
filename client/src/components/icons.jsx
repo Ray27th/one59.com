@@ -71,6 +71,14 @@ export function PlusIcon({ size = 16 }) {
   );
 }
 
+export function CheckIcon({ size = 16 }) {
+  return (
+    <svg fill="none" height={size} viewBox="0 0 24 24" width={size}>
+      <path d="m5 13 4 4L19 7" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+    </svg>
+  );
+}
+
 export function DeliveryIcon({ size = 18 }) {
   return (
     <svg fill="none" height={size} viewBox="0 0 24 24" width={size}>
