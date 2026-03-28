@@ -58,6 +58,25 @@ export const FurnitureIcon = ({ shape, color, size = 52 }) => {
       <rect x="98" y="4" width="10" height="118" rx="4" fill={color} opacity="0.9" />
     </svg>
   );
+  if (shape === "bench") return (
+    <svg width={s * 2} height={s} viewBox="0 0 200 80">
+      <rect x="18" y="28" width="164" height="18" rx="8" fill={color} />
+      <rect x="28" y="42" width="16" height="24" rx="5" fill={color} opacity="0.82" />
+      <rect x="156" y="42" width="16" height="24" rx="5" fill={color} opacity="0.82" />
+      <rect x="48" y="18" width="104" height="16" rx="8" fill={color} opacity="0.72" />
+      <ellipse cx="100" cy="74" rx="76" ry="4" fill="rgba(0,0,0,0.05)" />
+    </svg>
+  );
+  if (shape === "stool") return (
+    <svg width={s * 1.2} height={s * 1.4} viewBox="0 0 96 112">
+      <rect x="14" y="14" width="68" height="18" rx="9" fill={color} />
+      <rect x="22" y="30" width="10" height="58" rx="4" fill={color} opacity="0.8" />
+      <rect x="64" y="30" width="10" height="58" rx="4" fill={color} opacity="0.8" />
+      <rect x="32" y="52" width="8" height="36" rx="4" fill={color} opacity="0.62" />
+      <rect x="56" y="52" width="8" height="36" rx="4" fill={color} opacity="0.62" />
+      <ellipse cx="48" cy="102" rx="30" ry="4" fill="rgba(0,0,0,0.06)" />
+    </svg>
+  );
   return null;
 };
 
