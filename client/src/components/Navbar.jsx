@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { SearchIcon, CartIcon, HeartIcon } from "./icons.jsx";
+import { promoBannerText } from "../data/index.js";
 
 const Navbar = ({ cartCount, wishlistSize, onScrollToFeatured, onScrollToHow }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -22,7 +23,7 @@ const Navbar = ({ cartCount, wishlistSize, onScrollToFeatured, onScrollToHow }) 
           fontSize: "13px", fontWeight: 600, letterSpacing: "0.06em", position: "relative",
           padding: "0 48px", textTransform: "uppercase",
         }}>
-          <span>EVERYTHING UNDER S$159 &nbsp;·&nbsp; FACTORY DIRECT &nbsp;·&nbsp; FREE DELIVERY OVER S$200</span>
+          <span>{promoBannerText}</span>
           <button onClick={() => setBannerVisible(false)} style={{
             position: "absolute", right: "16px",
             background: "none", border: "none", cursor: "pointer",
@@ -170,7 +171,7 @@ const Navbar = ({ cartCount, wishlistSize, onScrollToFeatured, onScrollToHow }) 
             onMouseEnter={e => { e.currentTarget.style.background = "#E55A2B"; }}
             onMouseLeave={e => { e.currentTarget.style.background = "#FF6B35"; }}
           >
-            Factory Tour
+            How It Works
           </button>
         </div>
       </nav>

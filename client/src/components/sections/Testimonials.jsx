@@ -1,4 +1,4 @@
-import { testimonials } from "../../data/index.js";
+import { testimonials, testimonialsSummary } from "../../data/index.js";
 import { StarFilled } from "../icons.jsx";
 import AnimateIn from "../ui/AnimateIn.jsx";
 
@@ -31,7 +31,7 @@ const Testimonials = () => (
             <span style={{
               fontSize: "14px", fontWeight: 800, color: "#1A1A1A",
               fontFamily: "'Arial Black', Arial, sans-serif",
-            }}>4.9 FROM 2,400+ REVIEWS</span>
+            }}>{testimonialsSummary}</span>
           </div>
         </div>
       </AnimateIn>

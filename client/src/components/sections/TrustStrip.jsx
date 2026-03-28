@@ -1,25 +1,19 @@
+import { trustPoints } from "../../data/index.js";
 import AnimateIn from "../ui/AnimateIn.jsx";
-
-const items = [
-  { stat: "UNDER $159", label: "EVERYTHING. ALWAYS." },
-  { stat: "FREE DELIVERY", label: "OVER S$200" },
-  { stat: "FACTORY DIRECT", label: "NO MIDDLEMAN" },
-  { stat: "SG · MY · ID", label: "SHIPPING REGIONWIDE" },
-];
 
 const TrustStrip = () => (
   <AnimateIn>
     <div style={{
-      background: "#FF6B35",
-      borderTop: "2px solid #1A1A1A",
-      borderBottom: "2px solid #1A1A1A",
-      display: "flex", alignItems: "stretch",
-    }}>
-      {items.map((item, i) => (
+        background: "#FF6B35",
+        borderTop: "2px solid #1A1A1A",
+        borderBottom: "2px solid #1A1A1A",
+        display: "flex", alignItems: "stretch",
+      }}>
+      {trustPoints.map((item, i) => (
         <div key={i} style={{
           flex: 1, display: "flex", alignItems: "center", gap: "16px",
           padding: "18px 24px",
-          borderRight: i < 3 ? "2px solid #1A1A1A" : "none",
+          borderRight: i < trustPoints.length - 1 ? "2px solid #1A1A1A" : "none",
         }}>
           <div style={{
             width: "10px", height: "10px",

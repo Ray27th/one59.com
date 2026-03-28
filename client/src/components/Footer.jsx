@@ -1,6 +1,8 @@
+import { storePolicy } from "../data/index.js";
+
 const footerCols = [
   { heading: "Shop", links: ["Chairs", "Tables", "Storage", "Lighting", "Decor", "New Arrivals"] },
-  { heading: "Company", links: ["About", "Factory Tour", "Careers", "Press"] },
+  { heading: "Company", links: ["About", "How It Works", "Careers", "Press"] },
   { heading: "Help", links: ["Delivery", "Returns", "Care Guide", "Contact"] },
 ];
 
@@ -26,9 +28,9 @@ const Footer = () => (
           <span style={{ fontSize: "9px", color: "#FF6B35", letterSpacing: "0.28em", textTransform: "uppercase", fontWeight: 700 }}>FURNITURE</span>
         </div>
         <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "13px", lineHeight: 1.8, maxWidth: "240px", margin: "0 0 20px" }}>
-          Factory-direct furniture. Everything under $159. No markup, no BS, just honest pieces for real homes.
+          Factory-direct furniture for mainland Singapore homes. {storePolicy.gstNote}. {storePolicy.priceCapNote}.
         </p>
-        <div style={{ fontSize: "11px", color: "#FF6B35", letterSpacing: "0.06em", fontWeight: 600, textTransform: "uppercase" }}>Singapore · Kuala Lumpur · Jakarta</div>
+        <div style={{ fontSize: "11px", color: "#FF6B35", letterSpacing: "0.06em", fontWeight: 600, textTransform: "uppercase" }}>Mainland Singapore only</div>
 
         <div style={{ marginTop: "20px", display: "flex", gap: "12px" }}>
           <a href="https://instagram.com/one59furniture" target="_blank" rel="noopener noreferrer" style={{
@@ -94,10 +96,9 @@ const Footer = () => (
         </div>
       ))}
 
-      {/* Factory Location Map */}
       <div>
         <div style={{ fontSize: "10px", letterSpacing: "0.16em", color: "#FF6B35", textTransform: "uppercase", marginBottom: "16px", fontWeight: 700 }}>
-          Factory Location
+          Singapore Coverage
         </div>
         <div style={{
           width: "100%",
@@ -114,13 +115,14 @@ const Footer = () => (
             allowFullScreen=""
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="Factory Location"
+            title="Singapore Coverage"
           />
         </div>
         <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.6)", marginTop: "10px", lineHeight: 1.6 }}>
-          <strong style={{ color: "#FF6B35" }}>Visit our factory</strong><br/>
-          Open weekdays 9am-5pm<br/>
-          Tours available
+          <strong style={{ color: "#FF6B35" }}>Based in Singapore</strong><br/>
+          {storePolicy.deliveryNote}<br/>
+          {storePolicy.returnsNote}<br/>
+          {storePolicy.supportNote}
         </div>
       </div>
     </div>
