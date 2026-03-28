@@ -52,6 +52,12 @@ export default function HomePage() {
               <p className="lede">{homeStory.body}</p>
             </div>
 
+            <div className="badge-row hero__badge-row">
+              <span className="badge badge--dark">GST included</span>
+              <span className="badge">3 to 5 day delivery</span>
+              <span className="badge">Mainland Singapore only</span>
+            </div>
+
             <div className="button-row">
               <Link className="btn btn--primary" to="/shop">
                 Shop the full catalogue
@@ -147,107 +153,113 @@ export default function HomePage() {
 
       <section className="section">
         <div className="container">
-          <SectionHeading
-            action={
-              <Link className="btn btn--ghost" to="/shop">
-                Shop all {catalogStats.totalProducts}
-              </Link>
-            }
-            eyebrow="Most-shopped right now"
-            title="The pieces customers keep coming back to for easy room upgrades."
-            body="These best-loved picks bring together compact sizing, useful materials, and the under-S$159 value story that makes One59 easy to return to."
-          />
+          <div className="home-section-shell home-section-shell--featured surface">
+            <SectionHeading
+              action={
+                <Link className="btn btn--ghost" to="/shop">
+                  Shop all {catalogStats.totalProducts}
+                </Link>
+              }
+              eyebrow="Most-shopped right now"
+              title="The pieces customers keep coming back to for easy room upgrades."
+              body="These best-loved picks bring together compact sizing, useful materials, and the under-S$159 value story that makes One59 easy to return to."
+            />
 
-          <div className="catalog-grid">
-            {featuredProducts.map((product, index) => (
-              <AnimateIn delay={index * 40} key={product.slug}>
-                <ProductCard product={product} showCategory />
-              </AnimateIn>
-            ))}
+            <div className="catalog-grid">
+              {featuredProducts.map((product, index) => (
+                <AnimateIn delay={index * 40} key={product.slug}>
+                  <ProductCard product={product} showCategory />
+                </AnimateIn>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       <section className="section">
         <div className="container">
-          <SectionHeading
-            action={
-              <Link className="btn btn--accent" to="/drops">
-                See all drops
-              </Link>
-            }
-            eyebrow="Current drop"
-            title={`${liveDrop.name} brings together compact wins for homes that need every piece to work harder.`}
-            body={liveDrop.story}
-          />
+          <div className="home-section-shell home-section-shell--drop surface">
+            <SectionHeading
+              action={
+                <Link className="btn btn--accent" to="/drops">
+                  See all drops
+                </Link>
+              }
+              eyebrow="Current drop"
+              title={`${liveDrop.name} brings together compact wins for homes that need every piece to work harder.`}
+              body={liveDrop.story}
+            />
 
-          <div className="drop-grid">
-            <AnimateIn className="drop-card drop-card--feature">
-              <div className="drop-card__image">
-                <img alt={liveDrop.name} src={liveDrop.image} />
-              </div>
-
-              <div className="drop-card__content">
-                <div className="badge-row">
-                  <span className="badge badge--solid">{liveDrop.status}</span>
-                  <span className="badge">{liveDrop.windowLabel}</span>
-                  <span className="badge">{liveDropProducts.length} products</span>
+            <div className="drop-grid">
+              <AnimateIn className="drop-card drop-card--feature">
+                <div className="drop-card__image">
+                  <img alt={liveDrop.name} src={liveDrop.image} />
                 </div>
-                <h3 className="drop-card__title">Compact seating, dining, and storage wins that feel immediate in the room.</h3>
-                <p className="body-copy">
-                  This live selection makes it easier to mix seating, dining, and storage pieces without losing the clear One59 pricing and delivery story.
-                </p>
-              </div>
-            </AnimateIn>
 
-            <AnimateIn className="drop-card drop-card--stack" delay={120}>
-              <SectionHeading
-                eyebrow="Why shoppers like it"
-                title="Fast room upgrades, clear details, and no guesswork on the basics."
-                body="From price to delivery timing to support, the things people usually have to hunt for stay visible while they browse."
-              />
-
-              <div className="mini-card">
-                <span className="eyebrow">Easy to shop</span>
-                <p className="body-copy">Add a piece from the product card or product page, then head to cart whenever you are ready to review everything together.</p>
-              </div>
-
-              <div className="mini-card">
-                <span className="eyebrow">More to explore</span>
-                <p className="body-copy">A broader mix of living, bedroom, dining, workspace, and storage pieces makes it easier to build out the room in one browse.</p>
-              </div>
-            </AnimateIn>
-          </div>
-
-          <div className="catalog-grid catalog-grid--spaced">
-            {liveDropProducts.map((product, index) => (
-              <AnimateIn delay={index * 50} key={product.slug}>
-                <ProductCard product={product} showCategory />
+                <div className="drop-card__content">
+                  <div className="badge-row">
+                    <span className="badge badge--solid">{liveDrop.status}</span>
+                    <span className="badge">{liveDrop.windowLabel}</span>
+                    <span className="badge">{liveDropProducts.length} products</span>
+                  </div>
+                  <h3 className="drop-card__title">Compact seating, dining, and storage wins that feel immediate in the room.</h3>
+                  <p className="body-copy">
+                    This live selection makes it easier to mix seating, dining, and storage pieces without losing the clear One59 pricing and delivery story.
+                  </p>
+                </div>
               </AnimateIn>
-            ))}
+
+              <AnimateIn className="drop-card drop-card--stack" delay={120}>
+                <SectionHeading
+                  eyebrow="Why shoppers like it"
+                  title="Fast room upgrades, clear details, and no guesswork on the basics."
+                  body="From price to delivery timing to support, the things people usually have to hunt for stay visible while they browse."
+                />
+
+                <div className="mini-card">
+                  <span className="eyebrow">Easy to shop</span>
+                  <p className="body-copy">Add a piece from the product card or product page, then head to cart whenever you are ready to review everything together.</p>
+                </div>
+
+                <div className="mini-card">
+                  <span className="eyebrow">More to explore</span>
+                  <p className="body-copy">A broader mix of living, bedroom, dining, workspace, and storage pieces makes it easier to build out the room in one browse.</p>
+                </div>
+              </AnimateIn>
+            </div>
+
+            <div className="catalog-grid catalog-grid--spaced">
+              {liveDropProducts.map((product, index) => (
+                <AnimateIn delay={index * 50} key={product.slug}>
+                  <ProductCard product={product} showCategory />
+                </AnimateIn>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       <section className="section">
         <div className="container">
-          <SectionHeading
-            action={
-              <Link className="btn btn--ghost" to="/shop?sort=price-low">
-                Shop price-low first
-              </Link>
-            }
-            eyebrow="Under S$79 picks"
-            title="The smaller-spend products still need to feel designed, not disposable."
-            body="These are the fast entry points into the brand — tidy desk upgrades, extra seating, and storage wins that make the room feel better without waiting for a major purchase."
-          />
+          <div className="home-section-shell surface">
+            <SectionHeading
+              action={
+                <Link className="btn btn--ghost" to="/shop?sort=price-low">
+                  Shop price-low first
+                </Link>
+              }
+              eyebrow="Under S$79 picks"
+              title="The smaller-spend products still need to feel designed, not disposable."
+              body="These are the fast entry points into the brand — tidy desk upgrades, extra seating, and storage wins that make the room feel better without waiting for a major purchase."
+            />
 
-          <div className="catalog-grid">
-            {valueProducts.map((product, index) => (
-              <AnimateIn delay={index * 40} key={product.slug}>
-                <ProductCard product={product} showCategory />
-              </AnimateIn>
-            ))}
+            <div className="catalog-grid">
+              {valueProducts.map((product, index) => (
+                <AnimateIn delay={index * 40} key={product.slug}>
+                  <ProductCard product={product} showCategory />
+                </AnimateIn>
+              ))}
+            </div>
           </div>
         </div>
       </section>

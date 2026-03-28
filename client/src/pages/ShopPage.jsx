@@ -101,6 +101,12 @@ export default function ShopPage() {
                 : "Search, filter, and compare across the full catalogue with GST-included pricing, clear availability, and room-led browsing built for everyday homes."}
             </p>
 
+            <div className="badge-row page-hero__badge-row">
+              <span className="badge badge--dark">GST included</span>
+              <span className="badge">3 to 5 day delivery</span>
+              <span className="badge">Guest checkout only</span>
+            </div>
+
             <div className="shop-hero-stats">
               <div className="mini-card shop-hero-stat">
                 <span className="fine-copy">Catalogue size</span>
@@ -115,28 +121,41 @@ export default function ShopPage() {
             </div>
           </AnimateIn>
 
-          <AnimateIn className="page-hero__aside surface" delay={120}>
-            <img alt={category ? category.name : "One59 shop"} src={category ? category.image : "/images/entryway-reset.webp"} />
+            <AnimateIn className="page-hero__aside surface" delay={120}>
+              <img alt={category ? category.name : "One59 shop"} src={category ? category.image : "/images/entryway-reset.webp"} />
 
-            <div className="page-hero__aside-copy">
-              <h2 className="page-hero__aside-title">Browse by room, compare by details, and shop with confidence.</h2>
-              <p className="body-copy">
-                From materials to category fit to price, the essentials stay easy to scan so choosing the right piece feels straightforward.
-              </p>
-            </div>
-          </AnimateIn>
-        </div>
+              <div className="page-hero__aside-copy">
+                <h2 className="page-hero__aside-title">Browse by room, compare by details, and shop with confidence.</h2>
+                <p className="body-copy">
+                  From materials to category fit to price, the essentials stay easy to scan so choosing the right piece feels straightforward.
+                </p>
 
-        <div className="shop-toolbar surface">
-          <div className="shop-toolbar__header">
-            <div>
-              <span className="eyebrow">Refine the view</span>
-              <h2 className="shop-toolbar__title">Filter by room, stock, and catalogue type.</h2>
-            </div>
+                <div className="page-hero__aside-points">
+                  <div className="mini-card page-hero__aside-point">
+                    <span className="fine-copy">Delivery</span>
+                    <p className="body-copy">3 to 5 day delivery across mainland Singapore.</p>
+                  </div>
 
-            <button className="btn btn--ghost" onClick={clearFilters} type="button">
-              Clear filters
-            </button>
+                  <div className="mini-card page-hero__aside-point">
+                    <span className="fine-copy">Returns</span>
+                    <p className="body-copy">7-day returns, with customer-paid change-of-mind return delivery.</p>
+                  </div>
+                </div>
+              </div>
+            </AnimateIn>
+          </div>
+
+          <div className="shop-toolbar surface">
+            <div className="shop-toolbar__header">
+              <div>
+                <span className="eyebrow">Refine the view</span>
+                <h2 className="shop-toolbar__title">Filter by room, stock, and catalogue type.</h2>
+                <p className="fine-copy shop-toolbar__body">Search, sort, and compare without losing the delivery and pricing truths that matter most.</p>
+              </div>
+
+              <button className="btn btn--ghost" onClick={clearFilters} type="button">
+                Clear filters
+              </button>
           </div>
 
           <div className="field">
@@ -183,7 +202,7 @@ export default function ShopPage() {
           </div>
         </div>
 
-        <div className="results-meta">
+        <div className="results-meta surface">
           <div>
             <p className="filter-note">
               Showing {filteredProducts.length} product{filteredProducts.length === 1 ? "" : "s"}
