@@ -8,7 +8,7 @@ import ProductImage from "../components/ui/ProductImage.jsx";
 import { formatPrice } from "../theme.js";
 
 export default function CartPage() {
-  const { cart, clearCart, removeFromCart, updateCartQuantity } = useStore();
+  const { cart, cartFeedback, clearCart, removeFromCart, updateCartQuantity } = useStore();
 
   if (!cart.lineItems.length) {
     return (
@@ -38,50 +38,76 @@ export default function CartPage() {
       <div className="container">
         <Breadcrumbs items={[{ label: "Home", to: "/" }, { label: "Cart" }]} />
 
+        <div className="cart-heading">
+          <div>
+            <span className="eyebrow">Your cart</span>
+            <h1 className="page-title">Review your order before guest checkout.</h1>
+            <p className="lede">Adjust quantities directly, remove items cleanly, and keep the shipping and support truths visible before the next step.</p>
+          </div>
+
+          <div className="button-row">
+            <Link className="btn btn--ghost" to="/shop">
+              Continue shopping
+            </Link>
+            <button className="btn btn--ghost" onClick={clearCart} type="button">
+              Clear cart
+            </button>
+          </div>
+        </div>
+
         <div className="cart-layout">
           <div className="cart-card surface">
-            <div style={{ display: "grid", gap: "var(--space-3)", marginBottom: "var(--space-6)" }}>
-              <span className="eyebrow">Your cart</span>
-              <h1 className="page-title">Review the order before guest checkout.</h1>
-              <p className="lede">
-                Check your quantities, confirm the SG-only delivery details, and continue to guest checkout when you are ready.
-              </p>
-            </div>
-
             <div className="cart-list">
               {cart.lineItems.map((item) => (
-                <div className="cart-item" key={item.slug} style={{ "--item-accent": `var(--tone-${item.product.tone})` }}>
-                  <div className="cart-item__media">
+                <div
+                  className={`cart-item${cartFeedback?.itemKey === item.itemKey ? " cart-item--highlight" : ""}`}
+                  key={item.itemKey}
+                  style={{ "--item-accent": `var(--tone-${item.product.tone})` }}
+                >
+                  <Link className="cart-item__media" to={`/product/${item.product.slug}`}>
                     <ProductImage objectFit="contain" product={item.product} />
-                  </div>
+                  </Link>
 
-                  <div style={{ display: "grid", gap: "var(--space-3)" }}>
-                    <div>
-                      <p className="fine-copy">{item.product.category.name}</p>
-                      <h2 className="card-title" style={{ fontSize: "1.5rem", margin: 0 }}>
-                        {item.product.name}
-                      </h2>
+                  <div className="cart-item__details">
+                    <div className="cart-item__header">
+                      <div>
+                        <p className="fine-copy">{item.product.category.name}</p>
+                        <Link className="cart-item__title-link" to={`/product/${item.product.slug}`}>
+                          <h2 className="cart-item__title">{item.product.name}</h2>
+                        </Link>
+                      </div>
+
+                      <div className="badge-row">
+                        <span className="badge">GST included</span>
+                        <span className="badge">Mainland Singapore only</span>
+                      </div>
                     </div>
 
                     <p className="body-copy">{item.product.summary}</p>
 
-                    <div className="badge-row">
-                      <span className="badge">GST included</span>
-                      <span className="badge">Mainland Singapore only</span>
-                    </div>
+                    <div className="cart-item__footer">
+                      <div className="cart-item__controls">
+                        <span className="fine-copy">Quantity</span>
+                        <QuantityStepper
+                          onChange={(nextValue) => updateCartQuantity(item.itemKey, nextValue)}
+                          onDecrease={() => updateCartQuantity(item.itemKey, Math.max(1, item.quantity - 1))}
+                          onIncrease={() => updateCartQuantity(item.itemKey, item.quantity + 1)}
+                          value={item.quantity}
+                        />
+                      </div>
 
-                    <QuantityStepper
-                      onDecrease={() => updateCartQuantity(item.slug, item.quantity - 1)}
-                      onIncrease={() => updateCartQuantity(item.slug, item.quantity + 1)}
-                      value={item.quantity}
-                    />
+                      <button className="cart-item__remove" onClick={() => removeFromCart(item.itemKey)} type="button">
+                        Remove item
+                      </button>
+                    </div>
                   </div>
 
-                  <div style={{ display: "grid", gap: "var(--space-3)", justifyItems: "end" }}>
+                  <div className="cart-item__price-stack">
+                    <span className="fine-copy">{formatPrice(item.unitPrice)} each</span>
                     <span className="price-text">{formatPrice(item.lineTotal)}</span>
-                    <button className="btn btn--ghost" onClick={() => removeFromCart(item.slug)} type="button">
-                      Remove
-                    </button>
+                    <Link className="btn btn--ghost" to={`/product/${item.product.slug}`}>
+                      View product
+                    </Link>
                   </div>
                 </div>
               ))}
@@ -90,39 +116,52 @@ export default function CartPage() {
 
           <aside className="summary-card surface">
             <span className="eyebrow">Order summary</span>
+
             <div className="summary-row">
-              <span className="body-copy">Items ({cart.count})</span>
-              <strong>{formatPrice(cart.subtotal)}</strong>
+              <span className="body-copy">Items</span>
+              <strong>{cart.count}</strong>
+            </div>
+            <div className="summary-row">
+              <span className="body-copy">Distinct products</span>
+              <span>{cart.uniqueCount}</span>
             </div>
             <div className="summary-row">
               <span className="body-copy">GST</span>
               <span>Included</span>
             </div>
             <div className="summary-row">
-              <span className="body-copy">Shipping</span>
-              <span>Flat mainland SG rules</span>
+              <span className="body-copy">Delivery</span>
+              <span>Flat mainland SG service</span>
             </div>
             <div className="summary-row summary-row--total">
-              <span className="card-title" style={{ fontSize: "1.2rem" }}>
-                Items subtotal
-              </span>
+              <span className="summary-total-label">Items subtotal</span>
               <span className="price-text">{formatPrice(cart.subtotal)}</span>
             </div>
 
             <div className="mini-card">
-              <span className="eyebrow">What happens next</span>
-              <p className="body-copy">
-                You can continue to guest checkout now. Online payment, inventory reservation, and order emails are not yet enabled on the site.
-              </p>
+              <span className="eyebrow">Before checkout</span>
+              <p className="body-copy">Guest checkout currently collects your details only. No payment is taken, no inventory is reserved, and no order email is sent from this storefront yet.</p>
             </div>
 
             <div className="button-row">
               <Link className="btn btn--primary" to="/checkout">
                 Continue to checkout
               </Link>
-              <button className="btn btn--ghost" onClick={clearCart} type="button">
-                Clear cart
-              </button>
+              <Link className="btn btn--ghost" to="/contact">
+                Ask a question first
+              </Link>
+            </div>
+
+            <div className="cart-support-grid">
+              <div className="mini-card">
+                <span className="eyebrow">Delivery</span>
+                <p className="body-copy">Standard delivery stays at 3 to 5 days and mainland Singapore only.</p>
+              </div>
+
+              <div className="mini-card">
+                <span className="eyebrow">Returns</span>
+                <p className="body-copy">7-day returns are supported, with customer-paid change-of-mind return delivery.</p>
+              </div>
             </div>
           </aside>
         </div>

@@ -17,10 +17,17 @@ const initialForm = {
   deliveryNotes: "",
 };
 
+const paymentPreview = [
+  "PayNow / PayLah",
+  "Cards via Stripe",
+  "GrabPay",
+  "Atome / hoolah",
+];
+
 export default function CheckoutPage() {
   const { cart } = useStore();
   const [formData, setFormData] = useState(initialForm);
-  const [submitted, setSubmitted] = useState(false);
+  const [reviewed, setReviewed] = useState(false);
 
   if (!cart.lineItems.length) {
     return (
@@ -47,7 +54,7 @@ export default function CheckoutPage() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setSubmitted(true);
+    setReviewed(true);
   };
 
   return (
@@ -57,78 +64,79 @@ export default function CheckoutPage() {
 
         <div className="checkout-layout">
           <form className="cart-card surface" onSubmit={handleSubmit}>
-            <div style={{ display: "grid", gap: "var(--space-3)", marginBottom: "var(--space-6)" }}>
+            <div className="checkout-heading">
               <span className="eyebrow">Guest checkout</span>
-              <h1 className="page-title">Fast checkout, no account required.</h1>
-              <p className="lede">
-                Enter your email, name, phone number, and delivery address so One59 has the details needed to prepare your order.
-              </p>
+              <h1 className="page-title">Fast details capture, no account required.</h1>
+              <p className="lede">Enter the contact and address details needed for delivery so your order information is ready when payment goes live.</p>
             </div>
 
-            <div className="field-grid">
-              <div className="field">
-                <label htmlFor="email">Email</label>
-                <input id="email" name="email" onChange={handleChange} required type="email" value={formData.email} />
-              </div>
+            <div className="checkout-section">
+              <h2 className="checkout-section__title">Contact details</h2>
+              <div className="field-grid">
+                <div className="field">
+                  <label htmlFor="email">Email</label>
+                  <input id="email" name="email" onChange={handleChange} required type="email" value={formData.email} />
+                </div>
 
-              <div className="field">
-                <label htmlFor="fullName">Full name</label>
-                <input id="fullName" name="fullName" onChange={handleChange} required type="text" value={formData.fullName} />
-              </div>
+                <div className="field">
+                  <label htmlFor="fullName">Full name</label>
+                  <input id="fullName" name="fullName" onChange={handleChange} required type="text" value={formData.fullName} />
+                </div>
 
-              <div className="field">
-                <label htmlFor="phone">Phone</label>
-                <input id="phone" name="phone" onChange={handleChange} required type="tel" value={formData.phone} />
-              </div>
+                <div className="field">
+                  <label htmlFor="phone">Phone</label>
+                  <input id="phone" name="phone" onChange={handleChange} required type="tel" value={formData.phone} />
+                </div>
 
-              <div className="field">
-                <label htmlFor="postalCode">Postal code</label>
-                <input id="postalCode" name="postalCode" onChange={handleChange} required type="text" value={formData.postalCode} />
-              </div>
-
-              <div className="field field--full">
-                <label htmlFor="addressLine1">Address line 1</label>
-                <input id="addressLine1" name="addressLine1" onChange={handleChange} required type="text" value={formData.addressLine1} />
-              </div>
-
-              <div className="field field--full">
-                <label htmlFor="addressLine2">Address line 2</label>
-                <input id="addressLine2" name="addressLine2" onChange={handleChange} type="text" value={formData.addressLine2} />
-              </div>
-
-              <div className="field">
-                <label htmlFor="unit">Unit / block</label>
-                <input id="unit" name="unit" onChange={handleChange} type="text" value={formData.unit} />
-              </div>
-
-              <div className="field field--full">
-                <label htmlFor="deliveryNotes">Delivery notes</label>
-                <textarea id="deliveryNotes" name="deliveryNotes" onChange={handleChange} value={formData.deliveryNotes} />
+                <div className="field">
+                  <label htmlFor="postalCode">Postal code</label>
+                  <input id="postalCode" name="postalCode" onChange={handleChange} required type="text" value={formData.postalCode} />
+                </div>
               </div>
             </div>
 
-            <div className="mini-card" style={{ marginTop: "var(--space-6)" }}>
-              <span className="eyebrow">Payment update</span>
-              <p className="body-copy">
-                Online payment is not yet enabled here. You can submit your guest details today, and payment and order confirmation steps will be added once they go live.
-              </p>
+            <div className="checkout-section">
+              <h2 className="checkout-section__title">Delivery address</h2>
+              <div className="field-grid">
+                <div className="field field--full">
+                  <label htmlFor="addressLine1">Address line 1</label>
+                  <input id="addressLine1" name="addressLine1" onChange={handleChange} required type="text" value={formData.addressLine1} />
+                </div>
+
+                <div className="field field--full">
+                  <label htmlFor="addressLine2">Address line 2</label>
+                  <input id="addressLine2" name="addressLine2" onChange={handleChange} type="text" value={formData.addressLine2} />
+                </div>
+
+                <div className="field">
+                  <label htmlFor="unit">Unit / block</label>
+                  <input id="unit" name="unit" onChange={handleChange} type="text" value={formData.unit} />
+                </div>
+
+                <div className="field field--full">
+                  <label htmlFor="deliveryNotes">Delivery notes</label>
+                  <textarea id="deliveryNotes" name="deliveryNotes" onChange={handleChange} value={formData.deliveryNotes} />
+                </div>
+              </div>
             </div>
 
-            <div className="checkout-actions" style={{ marginTop: "var(--space-6)" }}>
+            <div className="mini-card">
+              <span className="eyebrow">Important note</span>
+              <p className="body-copy">This page does not place a real order yet. No payment is collected, no stock is reserved, and no transactional email is triggered from this UI today.</p>
+            </div>
+
+            <div className="checkout-actions">
               <button className="btn btn--primary" type="submit">
-                Submit guest checkout
+                Review guest details
               </button>
               <Link className="btn btn--ghost" to="/cart">
                 Back to cart
               </Link>
             </div>
 
-            {submitted ? (
-              <div className="mini-card" style={{ marginTop: "var(--space-6)" }}>
-                <span className="eyebrow">Details received</span>
-                <p className="body-copy">
-                  Thanks, {formData.fullName || "there"}. Your guest details have been captured. Online payment, inventory reservation, and order confirmation are not yet enabled on the site.
-                </p>
+            {reviewed ? (
+              <div className="checkout-status">
+                Your details look complete. Payment, live order submission, and confirmation emails are not enabled yet, so nothing has been placed or charged.
               </div>
             ) : null}
           </form>
@@ -136,31 +144,45 @@ export default function CheckoutPage() {
           <aside className="summary-card surface">
             <span className="eyebrow">Checkout summary</span>
 
-            {cart.lineItems.map((item) => (
-              <div className="summary-row" key={item.slug}>
-                <span className="body-copy">
-                  {item.product.name} × {item.quantity}
-                </span>
-                <span>{formatPrice(item.lineTotal)}</span>
-              </div>
-            ))}
+            <div className="checkout-summary-list">
+              {cart.lineItems.map((item) => (
+                <div className="checkout-summary-item" key={item.itemKey}>
+                  <div>
+                    <p className="body-copy">
+                      {item.product.name} × {item.quantity}
+                    </p>
+                    <p className="fine-copy">{formatPrice(item.unitPrice)} each</p>
+                  </div>
+                  <span>{formatPrice(item.lineTotal)}</span>
+                </div>
+              ))}
+            </div>
 
             <div className="summary-row summary-row--total">
-              <span className="card-title" style={{ fontSize: "1.2rem" }}>
-                Items subtotal
-              </span>
+              <span className="summary-total-label">Items subtotal</span>
               <span className="price-text">{formatPrice(cart.subtotal)}</span>
             </div>
 
             <div className="mini-card">
               <span className="eyebrow">What stays visible</span>
-              <p className="body-copy">GST included in displayed prices, mainland Singapore only, 3 to 5 day delivery, 7 day returns, and Instagram DM as primary support.</p>
+              <p className="body-copy">GST included, mainland Singapore only, 3 to 5 day delivery, 7-day returns, and Instagram DM as the primary support route.</p>
             </div>
 
             <div className="mini-card">
-              <span className="eyebrow">Payment status</span>
-              <p className="body-copy">Card, PayNow, GrabPay, and BNPL payment options are not yet enabled here.</p>
+              <span className="eyebrow">Payment methods coming soon</span>
+              <div className="checkout-payment-list">
+                {paymentPreview.map((item) => (
+                  <div className="checkout-payment-item" key={item}>
+                    <span>{item}</span>
+                    <span className="fine-copy">Not live yet</span>
+                  </div>
+                ))}
+              </div>
             </div>
+
+            <Link className="btn btn--ghost" to="/contact">
+              Need help before ordering?
+            </Link>
           </aside>
         </div>
       </div>
