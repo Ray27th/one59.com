@@ -98,13 +98,12 @@ export default function ShopPage() {
             <p className="lede">
               {category
                 ? category.description
-                : "Search, filter, and compare across the full catalogue with GST-included pricing, clear availability, and room-led browsing built for everyday homes."}
+                : "Search, filter, and compare across the full catalogue with clear availability and room-led browsing built for everyday Singapore homes."}
             </p>
 
             <div className="badge-row page-hero__badge-row">
               <span className="badge badge--dark">GST included</span>
               <span className="badge">3 to 5 day delivery</span>
-              <span className="badge">Guest checkout only</span>
             </div>
 
             <div className="shop-hero-stats">
@@ -121,28 +120,28 @@ export default function ShopPage() {
             </div>
           </AnimateIn>
 
-            <AnimateIn className="page-hero__aside surface" delay={120}>
-              <img alt={category ? category.name : "One59 shop"} src={category ? category.image : "/images/entryway-reset.webp"} />
+          <AnimateIn className="page-hero__aside surface" delay={120}>
+            <img alt={category ? category.name : "One59 shop"} src={category ? category.image : "/images/entryway-reset.webp"} />
 
-              <div className="page-hero__aside-copy">
-                <h2 className="page-hero__aside-title">Browse by room, compare by details, and shop with confidence.</h2>
-                <p className="body-copy">
-                  From materials to category fit to price, the essentials stay easy to scan so choosing the right piece feels straightforward.
-                </p>
+            <div className="page-hero__aside-copy">
+              <h2 className="page-hero__aside-title">Browse by room, compare by details, and shop with confidence.</h2>
+              <p className="body-copy">
+                From materials to category fit to price, the essentials stay easy to scan so choosing the right piece feels straightforward.
+              </p>
 
-                <div className="page-hero__aside-points">
-                  <div className="mini-card page-hero__aside-point">
-                    <span className="fine-copy">Delivery</span>
-                    <p className="body-copy">3 to 5 day delivery across mainland Singapore.</p>
-                  </div>
+              <div className="page-hero__aside-points">
+                <div className="mini-card page-hero__aside-point">
+                  <span className="fine-copy">Returns</span>
+                  <p className="body-copy">7-day returns, with customer-paid change-of-mind return delivery.</p>
+                </div>
 
-                  <div className="mini-card page-hero__aside-point">
-                    <span className="fine-copy">Returns</span>
-                    <p className="body-copy">7-day returns, with customer-paid change-of-mind return delivery.</p>
-                  </div>
+                <div className="mini-card page-hero__aside-point">
+                  <span className="fine-copy">Support</span>
+                  <p className="body-copy">Instagram DM is fastest for stock or delivery questions, with email for longer notes.</p>
                 </div>
               </div>
-            </AnimateIn>
+            </div>
+          </AnimateIn>
           </div>
 
           <div className="shop-toolbar surface">
@@ -150,57 +149,57 @@ export default function ShopPage() {
               <div>
                 <span className="eyebrow">Refine the view</span>
                 <h2 className="shop-toolbar__title">Filter by room, stock, and catalogue type.</h2>
-                <p className="fine-copy shop-toolbar__body">Search, sort, and compare without losing the delivery and pricing truths that matter most.</p>
+                <p className="fine-copy shop-toolbar__body">Search, sort, and compare the range without adding noise to the page.</p>
               </div>
 
               <button className="btn btn--ghost" onClick={clearFilters} type="button">
                 Clear filters
               </button>
-          </div>
+            </div>
 
-          <div className="field">
-            <label htmlFor="shop-search">Search</label>
-            <input
-              id="shop-search"
-              onChange={(event) => setParam("q", event.target.value)}
-              placeholder="Search by product, room, or material"
-              type="search"
-              value={q}
-            />
-          </div>
+            <div className="field">
+              <label htmlFor="shop-search">Search</label>
+              <input
+                id="shop-search"
+                onChange={(event) => setParam("q", event.target.value)}
+                placeholder="Search by product, room, or material"
+                type="search"
+                value={q}
+              />
+            </div>
 
-          <div className="field">
-            <label htmlFor="shop-type">Catalogue type</label>
-            <select id="shop-type" onChange={(event) => setParam("type", event.target.value)} value={type}>
-              <option value="all">All</option>
-              <option value="evergreen">Evergreen</option>
-              <option value="drop">Drops</option>
-            </select>
-          </div>
+            <div className="field">
+              <label htmlFor="shop-type">Catalogue type</label>
+              <select id="shop-type" onChange={(event) => setParam("type", event.target.value)} value={type}>
+                <option value="all">All</option>
+                <option value="evergreen">Evergreen</option>
+                <option value="drop">Drops</option>
+              </select>
+            </div>
 
-          <div className="field">
-            <label htmlFor="shop-availability">Availability</label>
-            <select
-              id="shop-availability"
-              onChange={(event) => setParam("availability", event.target.value)}
-              value={availability}
-            >
-              <option value="all">All</option>
-              <option value="available">Available only</option>
-              <option value="sold_out">Sold out only</option>
-            </select>
-          </div>
+            <div className="field">
+              <label htmlFor="shop-availability">Availability</label>
+              <select
+                id="shop-availability"
+                onChange={(event) => setParam("availability", event.target.value)}
+                value={availability}
+              >
+                <option value="all">All</option>
+                <option value="available">Available only</option>
+                <option value="sold_out">Sold out only</option>
+              </select>
+            </div>
 
-          <div className="field">
-            <label htmlFor="shop-sort">Sort</label>
-            <select id="shop-sort" onChange={(event) => setParam("sort", event.target.value)} value={sort}>
-              <option value="featured">Featured</option>
-              <option value="price-low">Price: low to high</option>
-              <option value="price-high">Price: high to low</option>
-              <option value="name">Name</option>
-            </select>
+            <div className="field">
+              <label htmlFor="shop-sort">Sort</label>
+              <select id="shop-sort" onChange={(event) => setParam("sort", event.target.value)} value={sort}>
+                <option value="featured">Featured</option>
+                <option value="price-low">Price: low to high</option>
+                <option value="price-high">Price: high to low</option>
+                <option value="name">Name</option>
+              </select>
+            </div>
           </div>
-        </div>
 
         <div className="results-meta surface">
           <div>
@@ -208,7 +207,6 @@ export default function ShopPage() {
               Showing {filteredProducts.length} product{filteredProducts.length === 1 ? "" : "s"}
               {category ? ` in ${category.name}` : ""}.
             </p>
-            <p className="fine-copy">Every displayed price already includes GST.</p>
           </div>
 
           <div className="results-meta__actions">

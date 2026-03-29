@@ -13,13 +13,6 @@ import AnimateIn from "../components/ui/AnimateIn.jsx";
 import { getAlternativeProducts, getProductBySlug } from "../content/catalog/index.js";
 import { stockStatusLabels } from "../theme.js";
 
-const trustItems = [
-  "GST already included in the displayed price",
-  "3 to 5 day delivery across mainland Singapore",
-  "7-day returns with customer-paid change-of-mind return delivery",
-  "Instagram DM first, email fallback when you need longer notes",
-];
-
 export default function ProductPage() {
   const { slug } = useParams();
   const { cartFeedback, getCartQuantity } = useStore();
@@ -147,14 +140,14 @@ export default function ProductPage() {
 
             <div className="detail-meta">
               <span className="badge">{product.category.name}</span>
-              <span className="badge">Mainland Singapore only</span>
+              <span className="badge">{product.finish}</span>
               <span className="badge">Guest checkout only</span>
             </div>
 
             <div className="detail-price-panel">
               <div>
                 <span className="price-text detail-price-panel__value">{product.priceLabel}</span>
-                <p className="fine-copy">GST included · every item stays under the One59 promise.</p>
+                <p className="fine-copy">GST included in the displayed price.</p>
               </div>
 
               <div className="detail-proof">
@@ -191,7 +184,7 @@ export default function ProductPage() {
                 <div className="detail-buy-row">
                   <div>
                     <p className="fine-copy">Quantity</p>
-                    <p className="body-copy">Choose the quantity you want before adding this piece to your cart.</p>
+                    <p className="body-copy">Set the quantity you want before adding this piece.</p>
                   </div>
 
                   <QuantityStepper
@@ -228,15 +221,6 @@ export default function ProductPage() {
                 <p className="body-copy">This SKU is currently unavailable. Similar pieces are listed below so you can keep browsing nearby options.</p>
               </div>
             )}
-
-            <div className="trust-list">
-              {trustItems.map((item) => (
-                <div className="trust-list__item" key={item}>
-                  <span className="badge">Store truth</span>
-                  <p className="body-copy">{item}</p>
-                </div>
-              ))}
-            </div>
 
             <div className="mini-card">
               <span className="eyebrow">Customer note</span>
