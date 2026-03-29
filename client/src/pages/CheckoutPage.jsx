@@ -72,7 +72,6 @@ export default function CheckoutPage() {
 
               <div className="badge-row checkout-heading__badges">
                 <span className="badge badge--dark">GST included</span>
-                <span className="badge">Mainland Singapore only</span>
                 <span className="badge">No payment captured here yet</span>
               </div>
             </div>
@@ -129,7 +128,7 @@ export default function CheckoutPage() {
 
             <div className="mini-card">
               <span className="eyebrow">Important note</span>
-              <p className="body-copy">This page does not place a real order yet. No payment is collected, no stock is reserved, and no transactional email is triggered from this UI today.</p>
+              <p className="body-copy">This page is still a preview flow. No payment is collected and no live order is placed yet.</p>
             </div>
 
             <div className="checkout-actions">
@@ -143,7 +142,7 @@ export default function CheckoutPage() {
 
             {reviewed ? (
               <div className="checkout-status">
-                Your details look complete. Payment, live order submission, and confirmation emails are not enabled yet, so nothing has been placed or charged.
+                Your details look complete. Live payment and order submission are not enabled yet, so nothing has been placed or charged.
               </div>
             ) : null}
           </form>
@@ -175,14 +174,24 @@ export default function CheckoutPage() {
               ))}
             </div>
 
+            <div className="summary-row">
+              <span className="body-copy">GST</span>
+              <span>Included</span>
+            </div>
+
+            <div className="summary-row">
+              <span className="body-copy">Delivery</span>
+              <span>3 to 5 days · mainland SG</span>
+            </div>
+
             <div className="summary-row summary-row--total">
               <span className="summary-total-label">Items subtotal</span>
               <span className="price-text">{formatPrice(cart.subtotal)}</span>
             </div>
 
             <div className="mini-card">
-              <span className="eyebrow">What stays visible</span>
-              <p className="body-copy">GST included, mainland Singapore only, 3 to 5 day delivery, 7-day returns, and Instagram DM as the primary support route.</p>
+              <span className="eyebrow">Delivery & returns</span>
+              <p className="body-copy">Mainland Singapore only. 7-day returns apply, with customer-paid change-of-mind return delivery.</p>
             </div>
 
             <div className="mini-card">

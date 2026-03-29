@@ -42,12 +42,11 @@ export default function CartPage() {
           <div className="cart-heading__copy">
             <span className="eyebrow">Your cart</span>
             <h1 className="page-title">Review your order before guest checkout.</h1>
-            <p className="lede">Adjust quantities directly, remove items cleanly, and keep the shipping and support truths visible before the next step.</p>
+            <p className="lede">Adjust quantities directly, remove items cleanly, and keep the order easy to review before the next step.</p>
 
             <div className="badge-row">
               <span className="badge badge--dark">GST included</span>
               <span className="badge">3 to 5 day delivery</span>
-              <span className="badge">7-day returns</span>
             </div>
           </div>
 
@@ -91,11 +90,9 @@ export default function CartPage() {
                         <Link className="cart-item__title-link" to={`/product/${item.product.slug}`}>
                           <h2 className="cart-item__title">{item.product.name}</h2>
                         </Link>
-                      </div>
-
-                      <div className="badge-row">
-                        <span className="badge">GST included</span>
-                        <span className="badge">Mainland Singapore only</span>
+                        <p className="fine-copy">
+                          {item.product.finish} · {item.product.dimensions}
+                        </p>
                       </div>
                     </div>
 
@@ -168,16 +165,9 @@ export default function CartPage() {
               </Link>
             </div>
 
-            <div className="cart-support-grid">
-              <div className="mini-card">
-                <span className="eyebrow">Delivery</span>
-                <p className="body-copy">Standard delivery stays at 3 to 5 days and mainland Singapore only.</p>
-              </div>
-
-              <div className="mini-card">
-                <span className="eyebrow">Returns</span>
-                <p className="body-copy">7-day returns are supported, with customer-paid change-of-mind return delivery.</p>
-              </div>
+            <div className="mini-card">
+              <span className="eyebrow">Delivery & returns</span>
+              <p className="body-copy">Standard delivery runs 3 to 5 days across mainland Singapore. 7-day returns stay available, with customer-paid change-of-mind return delivery.</p>
             </div>
           </aside>
         </div>
