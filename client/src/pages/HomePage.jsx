@@ -18,27 +18,60 @@ import { homeStory, testimonials, trustPoints } from "../content/site/index.js";
 export default function HomePage() {
   return (
     <>
-      <section className="section">
-        <div className="container hero">
-          <AnimateIn className="hero__copy surface">
-            <span className="eyebrow">Under S$159, always</span>
-            <h1 className="display-title">Furniture that feels calm, credible, and worth sharing.</h1>
-            <p className="lede">{homeStory.body}</p>
-            <div className="button-row">
-              <Link className="btn btn--primary" to="/shop">
-                Shop the catalogue
-              </Link>
-              <Link className="btn btn--ghost" to="/drops">
-                Browse drops
-              </Link>
-            </div>
-          </AnimateIn>
+      <section className="hero-fullbleed">
+        <div className="hero-fullbleed__image">
+          <img alt="One59 furniture collection" src="/images/room-starter.webp" />
+        </div>
+        <div className="hero-fullbleed__overlay" />
+        <div className="hero-fullbleed__content">
+          <span className="eyebrow">Under S$159, always</span>
+          <h1 className="display-title hero-fullbleed__title">Furniture that feels calm, credible, and worth sharing.</h1>
+          <p className="lede hero-fullbleed__lede">{homeStory.body}</p>
+          <div className="button-row hero-fullbleed__actions">
+            <Link className="btn btn--primary btn--lg" to="/shop">Shop the catalogue</Link>
+            <Link className="btn btn--white" to="/drops">Browse drops</Link>
+          </div>
+        </div>
+      </section>
 
-          <AnimateIn className="hero__visual surface" delay={120}>
-            <div className="hero__image-wrap">
-              <img alt="One59 room starter scene" src="/images/room-starter.webp" />
-            </div>
-          </AnimateIn>
+      <section className="trust-marquee">
+        <div className="trust-marquee__track">
+          <div className="trust-marquee__content">
+            <span className="trust-marquee__item">★ Factory-direct pricing</span>
+            <span className="trust-marquee__divider">·</span>
+            <span className="trust-marquee__item">GST included</span>
+            <span className="trust-marquee__divider">·</span>
+            <span className="trust-marquee__item">3–5 day delivery</span>
+            <span className="trust-marquee__divider">·</span>
+            <span className="trust-marquee__item">7-day returns</span>
+            <span className="trust-marquee__divider">·</span>
+            <span className="trust-marquee__item">Mainland Singapore only</span>
+            <span className="trust-marquee__divider">·</span>
+            <span className="trust-marquee__item">Under S$159 per item</span>
+            <span className="trust-marquee__divider">·</span>
+            <span className="trust-marquee__item">No fake markdowns</span>
+            <span className="trust-marquee__divider">·</span>
+            <span className="trust-marquee__item">Guest checkout</span>
+            <span className="trust-marquee__divider">·</span>
+          </div>
+          <div className="trust-marquee__content" aria-hidden="true">
+            <span className="trust-marquee__item">★ Factory-direct pricing</span>
+            <span className="trust-marquee__divider">·</span>
+            <span className="trust-marquee__item">GST included</span>
+            <span className="trust-marquee__divider">·</span>
+            <span className="trust-marquee__item">3–5 day delivery</span>
+            <span className="trust-marquee__divider">·</span>
+            <span className="trust-marquee__item">7-day returns</span>
+            <span className="trust-marquee__divider">·</span>
+            <span className="trust-marquee__item">Mainland Singapore only</span>
+            <span className="trust-marquee__divider">·</span>
+            <span className="trust-marquee__item">Under S$159 per item</span>
+            <span className="trust-marquee__divider">·</span>
+            <span className="trust-marquee__item">No fake markdowns</span>
+            <span className="trust-marquee__divider">·</span>
+            <span className="trust-marquee__item">Guest checkout</span>
+            <span className="trust-marquee__divider">·</span>
+          </div>
         </div>
       </section>
 

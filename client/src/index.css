@@ -127,7 +127,7 @@ button {
 }
 
 .section {
-  padding: var(--space-16) 0;
+  padding: var(--space-20) 0;
 }
 
 .section--tight {
@@ -169,7 +169,7 @@ button {
 
 .display-title {
   margin: 0;
-  font-size: clamp(3rem, 5vw, 5.8rem);
+  font-size: clamp(2.4rem, 4.5vw, 4.5rem);
   line-height: 0.92;
 }
 
@@ -181,7 +181,7 @@ button {
 
 .section-title {
   margin: 0;
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-size: clamp(1.6rem, 2.5vw, 2.4rem);
   line-height: 1;
 }
 
@@ -820,6 +820,122 @@ button {
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* Full-bleed hero */
+.hero-fullbleed {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 85vh;
+  overflow: hidden;
+}
+
+.hero-fullbleed__image {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-fullbleed__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-fullbleed__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(23, 20, 16, 0.25) 0%, rgba(23, 20, 16, 0.55) 100%);
+}
+
+.hero-fullbleed__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+  text-align: center;
+  max-width: 52rem;
+  padding: var(--space-8);
+  color: #FFFFFF;
+}
+
+.hero-fullbleed__title {
+  color: #FFFFFF;
+  font-size: clamp(2.8rem, 5.5vw, 5rem);
+}
+
+.hero-fullbleed__lede {
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 36rem;
+}
+
+.hero-fullbleed__actions {
+  justify-content: center;
+  margin-top: var(--space-3);
+}
+
+.hero-fullbleed .eyebrow {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+}
+
+.btn--lg {
+  min-height: 3.5rem;
+  padding: 0 var(--space-8);
+  font-size: 1rem;
+}
+
+.btn--white {
+  background: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn--white:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Trust marquee - inspired by MagicUI Marquee */
+.trust-marquee {
+  background: var(--color-ink);
+  color: rgba(255, 255, 255, 0.7);
+  overflow: hidden;
+  padding: var(--space-4) 0;
+}
+
+.trust-marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 30s linear infinite;
+}
+
+.trust-marquee__content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-shrink: 0;
+  padding-right: var(--space-4);
+}
+
+.trust-marquee__item {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.trust-marquee__divider {
+  opacity: 0.3;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
 .metrics-grid,
 .info-grid,
 .catalog-grid,
@@ -850,7 +966,7 @@ button {
   justify-content: space-between;
   align-items: end;
   gap: var(--space-4);
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-8);
   padding-bottom: var(--space-4);
   border-bottom: 1px solid rgba(23, 20, 16, 0.08);
 }
@@ -976,7 +1092,7 @@ button {
 
 .product-card__media {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 4;
   overflow: hidden;
   border-bottom: 1px solid var(--color-line);
   background: var(--color-paper);
@@ -1024,12 +1140,12 @@ button {
 .product-card:hover .product-card__media .product-image--illustration,
 .product-card:hover .product-card__media .product-image--fallback,
 .product-card:hover .product-card__media svg {
-  transform: scale(1.03);
+  transform: scale(1.06);
 }
 
 .product-card__body {
   display: grid;
-  gap: var(--space-4);
+  gap: var(--space-3);
   padding: var(--space-4);
 }
 
@@ -1086,7 +1202,7 @@ button {
 .product-card__title {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 1.45rem;
+  font-size: 1.15rem;
   line-height: 1.02;
 }
 
