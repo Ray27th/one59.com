@@ -10,8 +10,7 @@ export default function AddToCartButton({
   quantity = 1,
   variant = "primary",
 }) {
-  const { addToCart, cartFeedback, getCartQuantity } = useStore();
-  const quantityInCart = getCartQuantity(product);
+  const { addToCart, cartFeedback } = useStore();
   const isRecentlyAdded = cartFeedback?.itemKey === getProductKey(product);
   const variantClass = isRecentlyAdded
     ? "btn--success"
@@ -19,11 +18,7 @@ export default function AddToCartButton({
       ? "btn--accent"
       : "btn--primary";
 
-  const buttonLabel = isRecentlyAdded
-    ? `Added · ${quantityInCart} in cart`
-    : quantityInCart
-      ? `${label} · ${quantityInCart} in cart`
-      : label;
+  const buttonLabel = isRecentlyAdded ? "Added" : label;
 
   return (
     <button

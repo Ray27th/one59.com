@@ -23,12 +23,6 @@ const primaryNav = [
   { label: "Contact", href: "/contact" },
 ];
 
-const headerTrustPoints = [
-  "GST included",
-  "3 to 5 day delivery",
-  "Guest checkout only",
-];
-
 export default function Layout() {
   const location = useLocation();
   const {
@@ -44,9 +38,7 @@ export default function Layout() {
     setMobileNavOpen(false);
   }, [location.pathname, setMobileNavOpen]);
 
-  const cartMeta = cart.count
-    ? `${cart.count} item${cart.count === 1 ? "" : "s"} · ${formatPrice(cart.subtotal)}`
-    : "Ready when you are";
+  const cartMeta = cart.count ? formatPrice(cart.subtotal) : "Ready when you are";
 
   return (
     <div className="site-shell">
@@ -59,8 +51,6 @@ export default function Layout() {
             </div>
 
             <div className="announcement__meta">
-              <span className="announcement__chip">GST included</span>
-              <span className="announcement__chip">3 to 5 day delivery</span>
               <button
                 aria-label="Dismiss announcement"
                 className="announcement__dismiss"
@@ -82,7 +72,7 @@ export default function Layout() {
                 <span className="brand__name">one59</span>
                 <span className="brand__tag">Singapore furniture under S$159</span>
               </div>
-              <span className="brand__signal">Factory-direct, no middlemen, no fake markdown theatre.</span>
+              <span className="brand__signal">Factory-direct pricing. No fake markdown theatre.</span>
             </Link>
 
             <nav aria-label="Primary" className="site-nav">
@@ -124,20 +114,6 @@ export default function Layout() {
             </div>
           </div>
 
-          <div className="site-header__meta">
-            <div className="badge-row site-header__trust-row">
-              {headerTrustPoints.map((point) => (
-                <span className="badge" key={point}>
-                  {point}
-                </span>
-              ))}
-            </div>
-
-            <Link className="site-header__support" to="/contact">
-              Shipping, returns & support <ArrowUpRightIcon size={14} />
-            </Link>
-          </div>
-
           {mobileNavOpen ? (
             <div className="mobile-drawer mobile-menu">
               {primaryNav.map((item) => (
@@ -149,14 +125,6 @@ export default function Layout() {
                   {item.label}
                 </NavLink>
               ))}
-
-              <div className="badge-row">
-                {headerTrustPoints.map((point) => (
-                  <span className="badge" key={point}>
-                    {point}
-                  </span>
-                ))}
-              </div>
             </div>
           ) : null}
         </div>

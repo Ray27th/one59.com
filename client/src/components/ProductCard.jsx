@@ -16,7 +16,7 @@ export default function ProductCard({ product, showCategory = false }) {
   const { getCartQuantity } = useStore();
   const quantityInCart = getCartQuantity(product);
   const accent = `var(--tone-${product.tone})`;
-  const metaLine = showCategory ? `${product.category.name} · ${product.sku}` : product.sku;
+  const metaLine = showCategory ? product.category.name : product.sku;
 
   return (
     <article className="product-card" style={{ "--card-accent": accent }}>
@@ -30,65 +30,61 @@ export default function ProductCard({ product, showCategory = false }) {
       </Link>
 
       <div className="product-card__body">
-        <div className="product-card__top">
-          <div className="product-card__title-wrap">
-            <p className="fine-copy product-card__sku">{metaLine}</p>
+          <div className="product-card__top">
+            <div className="product-card__title-wrap">
+              <p className="fine-copy product-card__sku">{metaLine}</p>
 
-            <Link className="product-card__title-link" to={`/product/${product.slug}`}>
+              <Link className="product-card__title-link" to={`/product/${product.slug}`}>
               <h3 className="product-card__title">{product.name}</h3>
               <span className="product-card__title-icon">
+                  <ArrowRightIcon size={14} />
+                </span>
+              </Link>
+            </div>
+
+            <div className="product-card__price-block">
+              <span className="price-text">{product.priceLabel}</span>
+            </div>
+          </div>
+
+          <p className="body-copy product-card__summary">{product.summary}</p>
+
+          <div className="product-card__meta">
+            <span className="fine-copy">{product.finish}</span>
+            <span className="fine-copy">{product.dimensions}</span>
+            {quantityInCart ? <span className="badge badge--dark">{quantityInCart} in cart</span> : null}
+          </div>
+
+          <div className="product-card__specs">
+            <div className="product-card__spec">
+              <span className="fine-copy">Materials</span>
+              <span className="body-copy">{product.materials}</span>
+            </div>
+
+            <div className="product-card__spec">
+              <span className="fine-copy">Assembly</span>
+              <span className="body-copy">{product.assembly}</span>
+            </div>
+          </div>
+
+          <div className="product-card__actions">
+            {product.stockStatus === "sold_out" ? (
+              <Link className="btn btn--ghost product-card__primary-action" to={`/product/${product.slug}`}>
+                See alternatives
                 <ArrowRightIcon size={14} />
-              </span>
-            </Link>
+              </Link>
+            ) : (
+              <>
+                <AddToCartButton className="product-card__primary-action" label="Add to cart" product={product} variant="accent" />
 
-            <p className="fine-copy product-card__finish">{product.finish}</p>
-          </div>
-
-          <div className="product-card__price-block">
-            <span className="price-text">{product.priceLabel}</span>
-            <span className="fine-copy">GST included</span>
-          </div>
-        </div>
-
-        <p className="body-copy product-card__summary">{product.summary}</p>
-
-        <div className="badge-row">
-          <span className="badge">3 to 5 day delivery</span>
-          <span className="badge">Mainland Singapore only</span>
-          {quantityInCart ? <span className="badge badge--dark">{quantityInCart} in cart</span> : null}
-        </div>
-
-        <div className="product-card__specs">
-          <div className="product-card__spec">
-            <span className="fine-copy">Materials</span>
-            <span className="body-copy">{product.materials}</span>
-          </div>
-
-          <div className="product-card__spec">
-            <span className="fine-copy">Dimensions</span>
-            <span className="body-copy">{product.dimensions}</span>
+                <Link className="product-card__detail-link" to={`/product/${product.slug}`}>
+                  Details
+                  <ArrowRightIcon size={14} />
+                </Link>
+              </>
+            )}
           </div>
         </div>
-
-        <div className="product-card__actions">
-          {product.stockStatus === "sold_out" ? (
-            <Link className="btn btn--ghost" to={`/product/${product.slug}`}>
-              See alternatives
-              <ArrowRightIcon size={14} />
-            </Link>
-          ) : (
-            <AddToCartButton label="Add to cart" product={product} variant="accent" />
-          )}
-
-          <Link className="btn btn--ghost" to={`/product/${product.slug}`}>
-            View details
-          </Link>
-        </div>
-
-        <div className="product-card__footer-note">
-          <span className="fine-copy">Guest checkout only · Mainland Singapore delivery</span>
-        </div>
-      </div>
-    </article>
+      </article>
   );
 }
