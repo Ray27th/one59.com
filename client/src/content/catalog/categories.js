@@ -5,7 +5,7 @@ export const categories = [
     eyebrow: "Soft-impact pieces",
     description:
       "Compact seating and side pieces that make rental corners, first flats, and multipurpose rooms feel more finished.",
-    image: "/images/floor-cushion.webp",
+    image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80",
     tone: "clay",
   },
   {
@@ -14,7 +14,7 @@ export const categories = [
     eyebrow: "Nightstand essentials",
     description:
       "Pre-assembled bedside storage and mirrors built for fast room upgrades without the usual flat-pack drag.",
-    image: "/images/bedside-table.webp",
+    image: "https://images.unsplash.com/photo-1616627547584-bf28cee262db?w=800&q=80",
     tone: "sand",
   },
   {
@@ -23,7 +23,7 @@ export const categories = [
     eyebrow: "Fold, host, reset",
     description:
       "Flexible chairs and tables that earn their footprint in smaller Singapore homes and easy hosting setups.",
-    image: "/images/tray-table.webp",
+    image: "https://images.unsplash.com/photo-1604578762246-41134e37f9cc?w=800&q=80",
     tone: "ember",
   },
   {
@@ -32,7 +32,7 @@ export const categories = [
     eyebrow: "WFH without clutter",
     description:
       "Desk-side furniture for study corners, hybrid work setups, and late-night focus sessions that still look styled.",
-    image: "/images/laptop-desk.webp",
+    image: "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=800&q=80",
     tone: "slate",
   },
   {
@@ -41,7 +41,7 @@ export const categories = [
     eyebrow: "Entryway and vertical wins",
     description:
       "Shelves, bins, and entryway pieces that look considered while keeping small-space mess under control.",
-    image: "/images/coat-rack.webp",
+    image: "https://images.unsplash.com/photo-1595514020180-8c245c392e4c?w=800&q=80",
     tone: "sage",
   },
 ];

@@ -20,14 +20,14 @@ export const dropsBySlug = Object.fromEntries(drops.map((drop) => [drop.slug, dr
 
 export const featuredProducts = products.filter((product) =>
   [
-    "paya-laptop-desk",
-    "joo-chiat-bedside-table",
-    "bedok-shoe-rack",
-    "commonwealth-nesting-side-table",
-    "tiong-bahru-bistro-table",
-    "bukit-timah-accent-lounge-chair",
-    "upper-thomson-task-chair",
-    "seletar-entry-bench-rack",
+    "slim-desk",
+    "nook-nightstand",
+    "stride-rack",
+    "duo-side-table",
+    "ronde-table",
+    "haven-lounge",
+    "draft-chair",
+    "foyer-bench",
   ].includes(product.slug)
 );
 
